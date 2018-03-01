@@ -42,14 +42,19 @@ Inputs:  double theta
 
 Returns: The rotation matrix created using theta as the 
 angle of rotation and X as the axis of rotation.
+
+y1 = ycos(THETA) - zsin(THETA)
+z1 = zcos(THETA) + ysin(THETA)
 ====================*/
 struct matrix * make_rotX(double theta) {
   struct matrix * rot = new_matrix(4, 4);
   ident(rot);
   //convert theta to radians
-  rot->m[0][0] = x;
-  rot->m[1][1] = y;
-  rot->m[2][2] = z;
+  theta = theta * M_PI / 180;
+  rot->m[1][1] = cos(theta);
+  rot->m[1][2] = -1 * sin(theta);
+  rot->m[2][1] = sin(theta);
+  rot->m[2][2] = cos(theta);
   return rot;
 }
 
@@ -58,9 +63,20 @@ Inputs:  double theta
          char c 
 Returns: The rotation matrix created using theta as the 
 angle of rotation and Y as the axis of rotation.
+
+z1 = zcos(THETA) - xsin(THETA)
+x1 = xcos(THETA) + zsin(THETA)
 ====================*/
 struct matrix * make_rotY(double theta) {
-  return NULL;
+  struct matrix * rot = new_matrix(4, 4);
+  ident(rot);
+  //convert theta to radians
+  theta = theta * M_PI / 180;
+  rot->m[2][1] = -1 * sin(theta);
+  rot->m[2][2] = cos(theta);
+  rot->m[0][0] = cos(theta);
+  rot->m[0][2] = sin(theta);
+  return rot;
 }
 
 /*======== struct matrix * make_rotZ() ==========
@@ -68,16 +84,19 @@ Inputs:  double theta
          char c 
 Returns: The rotation matrix created using theta as the 
 angle of rotation and Z as the axis of rotation.
+
+x1 = xcos(THETA) - ysin(THETA)
+y1 = ycos(THETA) + xsin(THETA)
 ====================*/
 struct matrix * make_rotZ(double theta) {
    struct matrix * rot = new_matrix(4, 4);
   ident(rot);
   //convert theta to radians
   theta = theta * M_PI / 180;
-  rot->m[0][0] = x;
-  rot->m[0][1] = y;
-  rot->m[1][0] = z;
-  rot->m[1][1] = z;
+  rot->m[0][0] = cos(theta);
+  rot->m[0][1] = -1 * sin(theta);
+  rot->m[1][0] = sin(theta);
+  rot->m[1][1] = cos(theta);;
   return rot;
 }
 
