@@ -128,6 +128,7 @@ void parse_file ( char * filename,
       } else if (axis == 'y') {
 	rot = make_rotY(rad);
       } else if (axis == 'z') {
+	printf("THIS IS THE RADIANS: %f\n", rad);
 	rot = make_rotZ(rad);
       } else {
 	printf("NOTHING");
@@ -135,6 +136,8 @@ void parse_file ( char * filename,
 
       matrix_mult(rot, transform);
       print_matrix(rot);
+      rot = make_translate(70+deg, 0, 0);
+      matrix_mult(rot, transform);
       free_matrix(rot);
     }
 
