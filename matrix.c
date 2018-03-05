@@ -48,8 +48,8 @@ struct matrix * make_rotX(double theta) {
   struct matrix * rot = new_matrix(4, 4);
   ident(rot);
   rot->m[1][1] = cos(theta);
-  rot->m[1][2] = -1 * sin(theta);
   rot->m[2][1] = sin(theta);
+  rot->m[1][2] = -1 * sin(theta);
   rot->m[2][2] = cos(theta);
   return rot;
 }
@@ -64,10 +64,10 @@ angle of rotation and Y as the axis of rotation.
 struct matrix * make_rotY(double theta) {
   struct matrix * rot = new_matrix(4, 4);
   ident(rot);
-  rot->m[2][0] = -1 * sin(theta);
+  rot->m[0][2] = sin(theta);
   rot->m[2][2] = cos(theta);
   rot->m[0][0] = cos(theta);
-  rot->m[0][2] = sin(theta);
+  rot->m[2][0] = -1 * sin(theta);
   return rot;
 }
 
@@ -81,8 +81,8 @@ struct matrix * make_rotZ(double theta) {
   struct matrix * rot = new_matrix(4, 4);
   ident(rot);
   rot->m[0][0] = cos(theta);
-  rot->m[0][1] = -1 * sin(theta);
   rot->m[1][0] = sin(theta);
+  rot->m[0][1] = -1 * sin(theta);
   rot->m[1][1] = cos(theta);
   return rot;
 }

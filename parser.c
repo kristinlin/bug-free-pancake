@@ -71,7 +71,7 @@ void parse_file ( char * filename,
     f = stdin;
   else
     f = fopen(filename, "r");
-  
+
   while ( fgets(line, 255, f) != NULL ) {
     line[strlen(line)-1]='\0';
 
@@ -120,6 +120,7 @@ void parse_file ( char * filename,
 
       //convert to radians
       float rad = deg * M_PI / 180;
+      printf("%f\n", rad);
 
       struct matrix * rot;
       
@@ -128,7 +129,6 @@ void parse_file ( char * filename,
       } else if (axis == 'y') {
 	rot = make_rotY(rad);
       } else if (axis == 'z') {
-	printf("THIS IS THE RADIANS: %f\n", rad);
 	rot = make_rotZ(rad);
       } else {
 	printf("NOTHING");
@@ -136,8 +136,6 @@ void parse_file ( char * filename,
 
       matrix_mult(rot, transform);
       print_matrix(rot);
-      //      rot = make_translate(70+deg, 0, 0);
-      //      matrix_mult(rot, transform);
       free_matrix(rot);
     }
 
@@ -156,6 +154,7 @@ void parse_file ( char * filename,
       fgets(line, 255, f);
       line[strlen(line)]='\0';
       printf("Save in %s\n", line);
+      save_extension( s, line );
     }
     else {
       printf("ERROR :%s:\n",line);
