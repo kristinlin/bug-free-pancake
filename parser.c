@@ -136,8 +136,8 @@ void parse_file ( char * filename,
 
       matrix_mult(rot, transform);
       print_matrix(rot);
-      rot = make_translate(70+deg, 0, 0);
-      matrix_mult(rot, transform);
+      //      rot = make_translate(70+deg, 0, 0);
+      //      matrix_mult(rot, transform);
       free_matrix(rot);
     }
 
